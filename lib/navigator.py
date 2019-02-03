@@ -5,10 +5,7 @@ from termcolor import colored
 
 # Local packages
 import scroll
-import category_scraper
 import delay
-import entry_scraper
-import navigator
 import scroll
 import visual
 
@@ -16,11 +13,10 @@ def focus_on_maplestory():
   pyautogui.click(400, 400)
   delay.short()
 
-def open_frederick():
+def open_fredrick():
   print("Opening frederick")
   pyautogui.moveTo(443, 258)
   pyautogui.doubleClick()
-  delay.long()
 
 def open_price_check():
   print("Opening price check")
@@ -61,11 +57,12 @@ def press_esc():
   pyautogui.press('esc')
   delay.long()
 
-def select_nth_item(n):
-  print("hey")
-  #n times press down arrow key
-  # press enter
-  # press space to skip text
+def go_to_nth_item(n):
+  for x in range(0, n):
+    pyautogui.press('down')
+  pyautogui.press('enter')
+  delay.long() # Wait for fredrick
+  pyautogui.press('space')
 
   # START SCREENSHOTTING!s
 
@@ -74,28 +71,22 @@ def press_down_n_times(times):
     pyautogui.press('down')
     time.sleep(FAST_SLEEP_TIME)
 
-def go_to_item(item):
-  open_frederick()
+def go_to_category(category):
+  open_fredrick()
   open_price_check()
-  if (item == "10% scroll"):
+  if (category == "10% scroll"):
     open_10_scroll()
-  elif (item == "30% scroll"):
+  elif (category == "30% scroll"):
     open_30_scroll()
-  elif (item == "60% scroll"): 
+  elif (category == "60% scroll"): 
     open_60_scroll()
-  elif (item == "70% scroll"):
+  elif (category == "70% scroll"):
     open_70_scroll()
-  elif (item == "100% scroll"):
+  elif (category == "100% scroll"):
     open_100_scroll()
-  elif (item == "chair"):
+  elif (category == "chair"):
     open_chair()
   delay.long()
 
-def get_nth_item(n):
-  press_down_n_times(n)
-
-  pyautogui.press('enter')
-  delay.long()
-  pyautogui.press('space')
-  delay.long()
-
+time.sleep(3)
+go_to_nth_item(10)

@@ -8,7 +8,7 @@ import pytesseract
 # Local packages
 import delay
 
-def wait_for_frederick():
+def wait_for_fredrick():
   print("Waiting for Fredrick...")
   loop = True
   while loop:
