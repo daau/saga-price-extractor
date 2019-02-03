@@ -1,15 +1,13 @@
 import pyautogui
 import time
+pyautogui.FAILSAFE = True
 
-def print_one():
-  print("one")
+time.sleep(2)
 
-def print_two():
-  print("two")
+count = 0
 
-def print_three():
-  print("three")
+for x in range(0, 500):
+  pyautogui.press('down')
+  count += 1
 
-array = [print_one, print_two, print_three]
-
-array[0]()
+print(count)

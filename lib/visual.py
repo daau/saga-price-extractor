@@ -3,6 +3,7 @@ import pdb
 import pyautogui
 import time
 from termcolor import colored
+import pytesseract
 
 # Local packages
 import delay
@@ -28,7 +29,12 @@ def find_here_are():
   print(coords)
   return coords
 
-def get_name_of_entry():
+def find_purchases():
+  coords = pyautogui.locateOnScreen("./images/purchases.png", region=(288, 184, 337, 241), confidence = 0.9)
+  print(coords)
+  return coords
+
+def get_image_of_entry():
   here_tuple = find_here_are()
   based_tuple = find_based_on()
 
@@ -38,10 +44,10 @@ def get_name_of_entry():
   width = (based_tuple.left - here_tuple.left) + 1
   height = 16
   
-  image = pyautogui.screenshot(region=(X,Y, width, height))
-  image.save("test.png")
+  return pyautogui.screenshot(region=(X,Y, width, height))
 
-get_name_of_entry()
+def get_text_from_image(image):
+  return pytesseract.image_to_string(image)
 
 def take_full_screenshot(count):
   pyautogui.screenshot(f"./export/{count}.png", region=(290, 189, 334, 234))
@@ -65,10 +71,9 @@ def scroll_and_take_screenshots():
     if (count == 2):
       count = 0
 
-
 def is_scrollable():
   try:
-    pyautogui.locateOnScreen('scroll.png',  region=(0,0, 800, 620))
+    pyautogui.locateOnScreen('./images/scroll.png',  region=(138, 164, 520, 314), confidence = 0.8)
   except Exception:
     return False
   else:
@@ -76,8 +81,9 @@ def is_scrollable():
 
 def can_still_scroll():
   try:
-    pyautogui.locateOnScreen('someButton.png', region=(624, 388, 21, 29))
+    pyautogui.locateOnScreen('./images/scroll_bottom.png', region=(624, 388, 21, 29))
   except Exception:
     return True # Scrollbar not found.. can still scroll
   else:
-    return False # Scrollbar found.. can't scroll
+    return False # Scrollbar found.. can't scroll4
+
