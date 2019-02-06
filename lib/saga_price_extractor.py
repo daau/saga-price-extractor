@@ -2,6 +2,7 @@
 import pyautogui
 import time
 import pdb
+import shutil
 from termcolor import colored
 
 # Local packages
@@ -39,7 +40,7 @@ class Application:
       scraper.scrape()
 
 try:
-  os.rmdir(../'export')
+  shutil.rmtree("../export")
   program = Application().scrape()
 except KeyboardInterrupt:
   print("\nProgram prematurely terminated.")

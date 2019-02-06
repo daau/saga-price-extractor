@@ -53,6 +53,7 @@ def get_text_from_image(image):
   return pytesseract.image_to_string(image)
 
 def get_name_of_entry():
+  navigator.hide_mouse()
   image = get_image_of_entry()
   return get_text_from_image(image)
 

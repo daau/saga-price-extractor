@@ -29,10 +29,9 @@ class CategoryScraper():
 
 
   def scrape(self):
-    pdb.set_trace()
     for scraper in self.entry_scrapers:
       navigator.go_to_category(self.name)
-      scraper.scrape
+      scraper.scrape()
 
 
 # ==========================

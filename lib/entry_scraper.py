@@ -76,7 +76,7 @@ class EntryScraper():
         self.writer.write(text)
 
         scroll_pattern[count]()
-        delay.super_long()
+        delay.long()
         count += 1
         if (count == 3):
           count = 0
