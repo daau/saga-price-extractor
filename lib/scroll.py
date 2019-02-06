@@ -17,3 +17,8 @@ def big():
 
 def small():
   scroll_nth_lines(5)
+
+delay.long()
+big()
+small()
+small()
