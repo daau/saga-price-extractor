@@ -91,5 +91,5 @@ def go_to_category(category):
   elif (category == "chairs"):
     open_chair()
 
-  vision.wait_for_fredrick()
-  press_esc()
+def hide_mouse():
+  pyautogui.moveTo(643, 261)

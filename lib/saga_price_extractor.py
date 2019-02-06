@@ -39,6 +39,7 @@ class Application:
       scraper.scrape()
 
 try:
+  os.rmdir(../'export')
   program = Application().scrape()
 except KeyboardInterrupt:
   print("\nProgram prematurely terminated.")

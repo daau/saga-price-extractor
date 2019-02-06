@@ -7,6 +7,7 @@ import pytesseract
 
 # Local packages
 import delay
+import navigator
 
 def wait_for_fredrick():
   print("Waiting for Fredrick...")
@@ -52,12 +53,15 @@ def get_text_from_image(image):
   return pytesseract.image_to_string(image)
 
 def get_name_of_entry():
-  get_text_from_image(get_image_of_entry)
+  image = get_image_of_entry()
+  return get_text_from_image(image)
 
 def take_full_screenshot():
-  return pyautogui.screenshot(region=(290, 189, 334, 234))
+  navigator.hide_mouse()
+  return pyautogui.screenshot(region=(290, 183, 334, 234))
 
 def take_zoned_screenshot():
+  navigator.hide_mouse()
   purchases_tuple = find_purchases()
   ok_tuple = find_ok()
 
@@ -72,16 +76,6 @@ def take_zoned_screenshot():
   height = (ok_tuple.top - 30) - Y
 
   return pyautogui.screenshot(region=(X, Y, width, height))
-  
-
-def scroll_and_take_screenshots():
-  count = 0
-  pattern = [scroll.big, scroll.small, scroll.small]
-  while can_still_scroll():
-    pattern[count]()
-    count += 1
-    if (count == 2):
-      count = 0
 
 def is_scrollable():
   try:
@@ -103,6 +97,3 @@ def can_still_scroll():
 # ==========================
 # DEBUGGING
 # ==========================
-
-image = take_zoned_screenshot()
-image.save("test.png")
