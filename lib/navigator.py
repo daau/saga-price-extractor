@@ -1,17 +1,17 @@
 # Globally installed packages
 import pyautogui
 import time
+import pdb
 from termcolor import colored
 
 # Local packages
-import scroll
 import delay
-import scroll
-import visual
+import vision
 
 def focus_on_maplestory():
+  print("Focusing on maplestory")
   pyautogui.click(400, 400)
-  delay.short()
+  delay.long()
 
 def open_fredrick():
   print("Opening frederick")
@@ -22,12 +22,10 @@ def open_price_check():
   print("Opening price check")
   pyautogui.moveTo(372, 374)
   pyautogui.click()
-  delay.long()
 
 def open_link(x, y):
   pyautogui.moveTo(x, y)
   pyautogui.click()
-  delay.long()
 
 def open_10_scroll():
   print("Opening 10% scrolls")
@@ -50,8 +48,12 @@ def open_100_scroll():
   open_link(344, 319)
 
 def open_chair():
-  print("Opening 10% scrolls")
+  print("Opening chair")
   open_link(330, 357)
+
+def open_etcs():
+  print("Opening etcs")
+  open_link(330, 376)  
 
 def press_esc():
   pyautogui.press('esc')
@@ -61,10 +63,8 @@ def go_to_nth_item(n):
   for x in range(0, n):
     pyautogui.press('down')
   pyautogui.press('enter')
-  delay.long() # Wait for fredrick
+  vision.wait_for_fredrick()
   pyautogui.press('space')
-
-  # START SCREENSHOTTING!s
 
 def press_down_n_times(times):
   for x in range(0, times):
@@ -73,20 +73,23 @@ def press_down_n_times(times):
 
 def go_to_category(category):
   open_fredrick()
-  open_price_check()
-  if (category == "10% scroll"):
-    open_10_scroll()
-  elif (category == "30% scroll"):
-    open_30_scroll()
-  elif (category == "60% scroll"): 
-    open_60_scroll()
-  elif (category == "70% scroll"):
-    open_70_scroll()
-  elif (category == "100% scroll"):
-    open_100_scroll()
-  elif (category == "chair"):
-    open_chair()
-  delay.long()
+  vision.wait_for_fredrick()
 
-time.sleep(3)
-go_to_nth_item(10)
+  open_price_check()
+  vision.wait_for_fredrick()
+
+  if (category == "10%"):
+    open_10_scroll()
+  elif (category == "30%"):
+    open_30_scroll()
+  elif (category == "60%"): 
+    open_60_scroll()
+  elif (category == "70%"):
+    open_70_scroll()
+  elif (category == "100%"):
+    open_100_scroll()
+  elif (category == "chairs"):
+    open_chair()
+
+  vision.wait_for_fredrick()
+  press_esc()

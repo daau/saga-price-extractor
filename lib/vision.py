@@ -13,7 +13,8 @@ def wait_for_fredrick():
   loop = True
   while loop:
     try: 
-      pyautogui.locateOnScreen("./images/fredrick.png", region=(100, 200, 300, 300))
+      delay.long()
+      pyautogui.locateOnScreen("./images/fredrick.png", region=(100, 200, 300, 300), confidence = 0.8)
     except: Exception
     else: 
       loop = False
@@ -21,18 +22,19 @@ def wait_for_fredrick():
 
 def find_based_on():
   coords = pyautogui.locateOnScreen("./images/based.png", region=(288, 184, 337, 241), confidence=0.6)
-  print(coords)
   return coords
 
 def find_here_are():
   coords = pyautogui.locateOnScreen("./images/here.png", region=(288, 184, 337, 241), confidence=0.6)
-  print(coords)
   return coords
 
 def find_purchases():
   coords = pyautogui.locateOnScreen("./images/purchases.png", region=(288, 184, 337, 241), confidence = 0.9)
-  print(coords)
   return coords
+
+def find_ok():
+  coords = pyautogui.locateOnScreen("./images/ok.png", region=(606, 391, 80, 122), confidence = 0.9)
+  return coords  
 
 def get_image_of_entry():
   here_tuple = find_here_are()
@@ -49,18 +51,28 @@ def get_image_of_entry():
 def get_text_from_image(image):
   return pytesseract.image_to_string(image)
 
-def take_full_screenshot(count):
-  pyautogui.screenshot(f"./export/{count}.png", region=(290, 189, 334, 234))
+def get_name_of_entry():
+  get_text_from_image(get_image_of_entry)
 
-def get_prices():
-  if is_scrollable():
-    scroll_and_take_screenshots()
-  else:
-    take_zoned_screenshot()
+def take_full_screenshot():
+  return pyautogui.screenshot(region=(290, 189, 334, 234))
 
 def take_zoned_screenshot():
-  return 1
-  # TBA
+  purchases_tuple = find_purchases()
+  ok_tuple = find_ok()
+
+  # X start = 290
+  # Y distance between purchases and start of entries = 30
+  X = 290
+  Y = (purchases_tuple.top + 29)
+
+  # Width = 350
+  # Y distance between OK and bottom border = 30  
+  width = 338
+  height = (ok_tuple.top - 30) - Y
+
+  return pyautogui.screenshot(region=(X, Y, width, height))
+  
 
 def scroll_and_take_screenshots():
   count = 0
@@ -81,9 +93,16 @@ def is_scrollable():
 
 def can_still_scroll():
   try:
-    pyautogui.locateOnScreen('./images/scroll_bottom.png', region=(624, 388, 21, 29))
+    pyautogui.locateOnScreen('./images/scroll_bottom.png', region=(587, 363, 119, 98), confidence=0.8)
   except Exception:
     return True # Scrollbar not found.. can still scroll
   else:
     return False # Scrollbar found.. can't scroll4
 
+
+# ==========================
+# DEBUGGING
+# ==========================
+
+image = take_zoned_screenshot()
+image.save("test.png")
