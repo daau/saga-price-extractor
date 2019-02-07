@@ -11,12 +11,3 @@ processed using Tesseract to extract the price data in a useable format.
 ## Installation
 1. Ensure you have pyautogui installed
 2. `python3 lib/price_extractory.py`
-
-## Notes
-10% scrolls: 70 entries
-30% scrolls: 57 entires
-60% scrolls: 73 entries
-70% scrolls: 37 entries
-100% scrolls: 59 entries
-chairs: 325 entries
-etcs: 514 entries
