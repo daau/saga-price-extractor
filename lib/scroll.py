@@ -14,9 +14,7 @@ def scroll_nth_lines(n):
   delay.short()
 
 def big():
-  print("big")
   scroll_nth_lines(6)
 
 def small():
-  print("small")
   scroll_nth_lines(5)

@@ -6,7 +6,6 @@ import os
 from termcolor import colored
 
 # Local packages
-import delay
 import navigator
 import vision
 import scroll
@@ -22,23 +21,12 @@ class EntryScraper():
     self.writer = None
 
   def scrape(self):
-    print("Creating dirs")
-    delay.long()
     self.create_directory()
-    print("visiting item")
-    delay.long()
     self.visit_item()
-    print("Getting name of entry")
-    delay.long()
     self.get_name_of_entry()
-    print("Saving name of entry")
-    delay.long()
     self.save_name_of_entry()
-    print("Taking screenshots")
-    delay.long()
     self.take_screenshots_of_entries()
     print("Done!")
-    delay.long()
     navigator.press_esc()
 
   def create_directory(self):
@@ -47,9 +35,12 @@ class EntryScraper():
     self.writer = Writer(self.directory + f"/data.txt")
 
   def visit_item(self):
+    vision.wait_for_fredrick()
     navigator.go_to_nth_item(self.n)
+    navigator.remove_mouse()
 
   def get_name_of_entry(self):
+    vision.wait_for_fredrick()
     self.name = vision.get_name_of_entry()
     print(f'Getting prices for {self.name}')
 
@@ -60,7 +51,7 @@ class EntryScraper():
 
   def take_screenshots_of_entries(self):
     if(vision.is_scrollable()):
-      image = vision.take_zoned_screenshot()
+      image = vision.resize(vision.take_zoned_screenshot())
       text = vision.get_text_from_image(image)
       self.writer.write(text)
       scroll.big()
@@ -71,18 +62,17 @@ class EntryScraper():
       while(True):
         if(not vision.can_still_scroll()):
           break
-        image = vision.take_full_screenshot()
+        image = vision.resize(vision.take_full_screenshot())
         text = vision.get_text_from_image(image)
         self.writer.write(text)
 
         scroll_pattern[count]()
-        delay.long()
         count += 1
         if (count == 3):
           count = 0
 
     else:
-      image = vision.take_zoned_screenshot()
+      image = vision.resize(vision.take_zoned_screenshot())
       text = vision.get_text_from_image(image)
       self.writer.write(text)
       self.writer.save()

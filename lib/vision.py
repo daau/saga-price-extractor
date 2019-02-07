@@ -4,10 +4,14 @@ import pyautogui
 import time
 from termcolor import colored
 import pytesseract
+from PIL import Image
 
 # Local packages
 import delay
 import navigator
+
+# Config
+TESSERACT_CONFIG = '--psm 6'
 
 def wait_for_fredrick():
   print("Waiting for Fredrick...")
@@ -50,16 +54,16 @@ def get_image_of_entry():
   return pyautogui.screenshot(region=(X,Y, width, height))
 
 def get_text_from_image(image):
-  return pytesseract.image_to_string(image)
+  return pytesseract.image_to_string(image, config=TESSERACT_CONFIG)
 
 def get_name_of_entry():
   navigator.hide_mouse()
-  image = get_image_of_entry()
+  image = resize(get_image_of_entry())
   return get_text_from_image(image)
 
 def take_full_screenshot():
   navigator.hide_mouse()
-  return pyautogui.screenshot(region=(290, 183, 334, 234))
+  return pyautogui.screenshot(region=(290, 183, 334, 240))
 
 def take_zoned_screenshot():
   navigator.hide_mouse()
@@ -77,6 +81,12 @@ def take_zoned_screenshot():
   height = (ok_tuple.top - 30) - Y
 
   return pyautogui.screenshot(region=(X, Y, width, height))
+
+def resize(image):
+  SCALE_FACTOR = 2
+
+  size = image.width*SCALE_FACTOR, image.height*SCALE_FACTOR
+  return image.resize(size, Image.ANTIALIAS)
 
 def is_scrollable():
   try:

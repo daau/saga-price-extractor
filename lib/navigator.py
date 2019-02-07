@@ -93,3 +93,6 @@ def go_to_category(category):
 
 def hide_mouse():
   pyautogui.moveTo(643, 261)
+
+def remove_mouse():
+  pyautogui.moveTo(55, 260)
