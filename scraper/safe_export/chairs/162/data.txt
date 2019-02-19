@@ -1,0 +1,6 @@
+st 100 purchases.
+
+Plup bought at an average of 34,999,999 mesos.
+Dave bought at an average of 49,999,999 mesos.
+Sarnia bought at an average of 44,999,999 mesos.
+mushed bought at an average of 44,999,999 mesos.

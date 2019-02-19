@@ -1,0 +1,5 @@
+the last 100 purchases.
+
+Horrior bought at an average of 1,000 mesos.
+Abandoned bought at an average of 7,999,999 mesos.
+helloni bought at an average of 6,000 mesos.
