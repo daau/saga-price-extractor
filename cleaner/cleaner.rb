@@ -70,11 +70,11 @@ class Cleaner
     end
 
     def export_json
-      File.write("export.json", JSON.pretty_generate(self.to_json))
+      File.write("fredrick_data.json", JSON.pretty_generate(self.to_json))
     end
 
     def get_entries
-      Dir.glob("./raw_data/**").each do |category_dir| # Get each categorical folder
+      Dir.glob("./export/**").each do |category_dir| # Get each categorical folder
         Dir.glob("#{category_dir}/**").each do |entry_dir| # Get all entries from categorical folders
           category = entry_dir.split("/")[-2]
           number = entry_dir.split("/")[-1]
@@ -91,7 +91,7 @@ class Entry
     @category = category
     @number = number
     @name
-    @prices = [1, 2, 3]
+    @prices = []
   end
 
   def clean
@@ -109,7 +109,7 @@ class Entry
   private
 
     def filepath
-      "./raw_data/#{@category}/#{number}"
+      "./export/#{@category}/#{number}"
     end
 
     def get_clean_name
