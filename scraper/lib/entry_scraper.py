@@ -19,6 +19,7 @@ class EntryScraper():
     self.directory = None
     self.count = 0
     self.writer = None
+    self.prices = [];
 
   def scrape(self):
     self.create_directory()

@@ -69,7 +69,6 @@ def go_to_nth_item(n):
 def press_down_n_times(times):
   for x in range(0, times):
     pyautogui.press('down')
-    time.sleep(FAST_SLEEP_TIME)
 
 def go_to_category(category):
   open_fredrick()
@@ -98,3 +97,6 @@ def hide_mouse():
 
 def remove_mouse():
   pyautogui.moveTo(55, 260)
+
+delay.long()
+press_down_n_times(146)

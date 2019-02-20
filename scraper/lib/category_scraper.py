@@ -18,7 +18,7 @@ class CategoryScraper():
 
   def setup(self):
     self.create_directory()
-    for i in range(325, self.number_of_entries):
+    for i in range(self.number_of_entries):
       self.entry_scrapers.append(EntryScraper(i, self.name))
 
   def create_directory(self):
