@@ -1,5 +1,5 @@
 require "fuzzy_match"
-require 'json'
+require "json"
 require "pry-byebug"
 
 class Cleaner
