@@ -1,11 +1,10 @@
 # Saga Price Extractor
-This repository consists of two programs: a bot and a data cleaner. The
-programs are intended for use with MapleSaga, a private, pre-Big Bang MapleStory
-server.
+This repository consists of two programs: a bot and a data cleaner. The programs are intended for use with MapleSaga, a private, pre-Big Bang MapleStory server.
 
 ## The bot
-The bot used to extract data from a game. Specifically, this bot extracts free market data from Frederick, an NPC in MapleSaga. The bot is written in written
-in Python and relies heavily on pyautogui, a GUI automation library.
+The bot is used to extract data from a game. Specifically, this bot extracts free market data from Frederick, an NPC in MapleSaga. 
+
+The bot is written in written in Python and relies heavily on pyautogui, a GUI automation library.
 
 If you'd like to use the bot, you must install the following:
 
@@ -32,11 +31,3 @@ The cleaner is written in Ruby. The cleaner takes the raw data from the scraper 
 To ensure correctness for item names, the cleaner cross references extracted raw data names against a list of verified correct entry names, which is available from [sagasquare.](sagasquare.com) Obtaining the list of correct item names from sagasquare is necessary, as the official MapleSaga library is incomplete and contains many errors.
 
 To use the cleaner, you must have the `fuzzy_match` gem installed.
-
-## Operation
-This script takes photos of the prices for various items given by Frederick. Images will need to be further
-processed using Tesseract to extract the price data in a useable format.
-
-## Installation
-1. Ensure you have pyautogui installed
-2. `python3 lib/price_extractory.py`
