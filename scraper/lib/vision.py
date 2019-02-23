@@ -14,14 +14,16 @@ import navigator
 TESSERACT_CONFIG = '--psm 6'
 
 def wait_for_fredrick():
-  loop = True
-  while loop:
-    try: 
+  print("DELAY - Waiting for Fredrick")
+  delay.long()
+  print("START - Waiting for Fredrick")
+  for attempt in range(6):
+    try:
       delay.long()
       pyautogui.locateOnScreen("./images/fredrick.png", region=(100, 200, 300, 300), confidence = 0.8)
     except: Exception
-    else: 
-      loop = False
+    else:
+      break
 
 def find_based_on():
   coords = pyautogui.locateOnScreen("./images/based.png", region=(288, 184, 337, 241), confidence=0.6)

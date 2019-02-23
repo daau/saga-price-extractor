@@ -31,3 +31,6 @@ The cleaner is written in Ruby. The cleaner takes the raw data from the scraper 
 To ensure correctness for item names, the cleaner cross references extracted raw data names against a list of verified correct entry names, which is available from [sagasquare.](sagasquare.com) Obtaining the list of correct item names from sagasquare is necessary, as the official MapleSaga library is incomplete and contains many errors.
 
 To use the cleaner, you must have the `fuzzy_match` gem installed.
+
+## Data
+If you're just interested in the raw data, please check out `./cleaner/fredrick_data.json`

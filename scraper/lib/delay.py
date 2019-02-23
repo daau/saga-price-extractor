@@ -3,7 +3,7 @@ import pyautogui
 import time
 from termcolor import colored
 
-SUPER_LONG_DELAY_TIME = 2
+SUPER_LONG_DELAY_TIME = 1
 LONG_DELAY_TIME = 0.25
 SHORT_DELAY_TIME = 0.05
 

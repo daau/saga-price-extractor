@@ -73,9 +73,11 @@ def press_down_n_times(times):
 def go_to_category(category):
   open_fredrick()
   vision.wait_for_fredrick()
+  delay.short()
 
   open_price_check()
   vision.wait_for_fredrick()
+  delay.short()
 
   if (category == "10%"):
     open_10_scroll()
@@ -91,12 +93,11 @@ def go_to_category(category):
     open_chair()
   elif (category == "etcs"):
     open_etcs()
+  
+  delay.short()
 
 def hide_mouse():
   pyautogui.moveTo(643, 261)
 
 def remove_mouse():
   pyautogui.moveTo(55, 260)
-
-delay.long()
-press_down_n_times(146)

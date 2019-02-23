@@ -3,12 +3,14 @@ import pyautogui
 import time
 import pdb
 import os
+import shutil
 from termcolor import colored
 
 # Local packages
 import navigator
 import vision
 import scroll
+import delay
 from writer import Writer
 
 class EntryScraper():
@@ -28,15 +30,19 @@ class EntryScraper():
     self.save_name_of_entry()
     self.take_screenshots_of_entries()
     print("Done!")
+    delay.short()
     navigator.press_esc()
 
   def create_directory(self):
+    if os.path.exists(f"../export/{self.parent_dirs}/{self.n}"):
+      shutil.rmtree(f"../export/{self.parent_dirs}/{self.n}")
     self.directory = f"../export/{self.parent_dirs}/{self.n}"
     os.makedirs(self.directory)
     self.writer = Writer(self.directory + f"/data.txt")
 
   def visit_item(self):
     vision.wait_for_fredrick()
+    print("Scrolling to item");
     navigator.go_to_nth_item(self.n)
     navigator.remove_mouse()
 
@@ -46,11 +52,13 @@ class EntryScraper():
     print(f'Getting prices for {self.name}')
 
   def save_name_of_entry(self):
+    print("Saving name of entry")
     f = Writer(self.directory + "/name.txt")
     f.write(self.name)
     f.save()
 
   def take_screenshots_of_entries(self):
+    print("Taking screenshots of entry")
     if(vision.is_scrollable()):
       image = vision.resize(vision.take_zoned_screenshot())
       text = vision.get_text_from_image(image)
