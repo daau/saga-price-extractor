@@ -32,22 +32,16 @@ class CategoryScraper():
     for scraper in self.entry_scrapers:
       for attempt in range(5):
         try:
-          print("Trying to scrape")
           navigator.go_to_category(self.name)
           scraper.scrape()
-          print("Done scraping")
         except Exception as e:
-          print("Failed. Retrying....")
-          delay.long()
           navigator.focus_on_maplestory()
-          delay.long()
           navigator.press_esc()
-          delay.long()
           navigator.press_esc()
         else:
           break # Success
       else:
-        raise MyCoolError
+        raise AttemptExceededError
         print("Exceeded maximum attempt range. Failed.")
 
 

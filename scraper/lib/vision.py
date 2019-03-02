@@ -14,12 +14,9 @@ import navigator
 TESSERACT_CONFIG = '--psm 6'
 
 def wait_for_fredrick():
-  print("DELAY - Waiting for Fredrick")
-  delay.long()
-  print("START - Waiting for Fredrick")
   for attempt in range(6):
     try:
-      delay.long()
+      delay.short()
       pyautogui.locateOnScreen("./images/fredrick.png", region=(100, 200, 300, 300), confidence = 0.8)
     except: Exception
     else:
@@ -104,7 +101,7 @@ def can_still_scroll():
   except Exception:
     return True # Scrollbar not found.. can still scroll
   else:
-    return False # Scrollbar found.. can't scroll4
+    return False # Scrollbar found.. can't scroll
 
 
 # ==========================

@@ -29,7 +29,6 @@ class EntryScraper():
     self.get_name_of_entry()
     self.save_name_of_entry()
     self.take_screenshots_of_entries()
-    print("Done!")
     delay.short()
     navigator.press_esc()
 
@@ -42,7 +41,6 @@ class EntryScraper():
 
   def visit_item(self):
     vision.wait_for_fredrick()
-    print("Scrolling to item");
     navigator.go_to_nth_item(self.n)
     navigator.remove_mouse()
 
@@ -52,13 +50,11 @@ class EntryScraper():
     print(f'Getting prices for {self.name}')
 
   def save_name_of_entry(self):
-    print("Saving name of entry")
     f = Writer(self.directory + "/name.txt")
     f.write(self.name)
     f.save()
 
   def take_screenshots_of_entries(self):
-    print("Taking screenshots of entry")
     if(vision.is_scrollable()):
       image = vision.resize(vision.take_zoned_screenshot())
       text = vision.get_text_from_image(image)
